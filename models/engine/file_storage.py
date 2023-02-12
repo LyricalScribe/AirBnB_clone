@@ -5,13 +5,11 @@ and deserializes JSON file to instances
 """
 import json
 import os
-from models.base_model import BaseModel
-from models import storage
 
 
 class FileStorage:
     """ Class that serializes and deserializes JSON objects """
-    __file_path = "my_file.json"
+    __file_path = "file.json"
     __objects = {}
 
     def all(self):
@@ -34,6 +32,8 @@ class FileStorage:
             json.dump(dictionary, f)
 
     def reload(self):
+        from models.base_model import BaseModel
+
         dct = {'BaseModel': BaseModel}
         # , 'User': User, 'Place': Place,
         #        'City': City, 'Amenity': Amenity, 'State': State,
