@@ -1,10 +1,13 @@
 import uuid
-from datetime import datetime, date
+from datetime import datetime
+from models import storage
 """The Base model which will be inherited across all class
 """
 
 
 class BaseModel:
+    """The class module doc"""
+
     def __init__(self, *args, **kwargs):
         """
         The initialisation method that invokes on each call of the Basemodel
@@ -16,12 +19,11 @@ class BaseModel:
                     value = datetime.strptime(kwargs[key], f)
                 if key != "__class__":
                     setattr(self, key, value)
-
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
-
+            storage.new()
 
     def __str__(self):
         """Prints string format for our model"""
@@ -30,6 +32,7 @@ class BaseModel:
     def save(self):
         """Updates with new time"""
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """Returns a dictionary for our Class"""
@@ -38,7 +41,7 @@ class BaseModel:
         my_dict["__class__"] = self.__class__.__name__
         for k, v in self.__dict__.items():
             if k == "created_at" or k == "updated_at":
-                my_dict[k] = v.isoformat() 
+                my_dict[k] = v.isoformat()
             else:
                 my_dict[k] = v
         return my_dict

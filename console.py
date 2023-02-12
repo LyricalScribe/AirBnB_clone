@@ -14,9 +14,8 @@ class HBNBCommand(cmd.Cmd):
         ])
     prompt = '(hbnb) '
     lst_class = ["BaseModel"]
-    dict_class = {"BaseModel":BaseModel}
+    dict_class = {"BaseModel": BaseModel}
     file = "models_dict.json"
-
 
     def do_create(self, args):
         """'create' command that Creates a new instance of 'BaseModel'"""
@@ -29,7 +28,6 @@ class HBNBCommand(cmd.Cmd):
             model_dict = new_model.to_dict()
             json_list = []
 
-
             if os.path.exists(self.file):
                 with open(self.file, 'r') as f:
                     json_list = json.load(f)
@@ -37,8 +35,6 @@ class HBNBCommand(cmd.Cmd):
             json_list.append(model_dict)
             with open(self.file, 'w') as f:
                 json.dump(json_list, f, indent=4)
-
-
             print(new_model.id)
 
     def do_show(self, arg):
@@ -48,7 +44,7 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split(' ')
         with open(self.file, 'r') as f:
             data = json.load(f)
-        all_id = [v for i in data for k,v in i.items() if k == 'id']
+        all_id = [v for i in data for k, v in i.items() if k == 'id']
 
         if not arg:
             print("** class name missing **")
@@ -59,14 +55,19 @@ class HBNBCommand(cmd.Cmd):
         elif args[1] not in all_id:
             print("** no instance found **")
         elif args[0] in self.lst_class and args[1] in all_id:
-            my_object = [BaseModel(**i) for i in data for k in i.keys() if i[k] == args[1]][0]
+            my_object = [
+                BaseModel(**i) for i in data for
+                k in i.keys() if i[k] == args[1]
+            ][0]
             print(my_object)
+
     def do_destroy(self, arg):
-        """'destroy' command Deletes an instance based on the class name and id"""
+        """'destroy' command Deletes an instance
+        based on the class name and id"""
         args = arg.split(' ')
         with open(self.file, 'r') as f:
             data = json.load(f)
-        all_id = [v for i in data for k,v in i.items() if k == 'id']
+        all_id = [v for i in data for k, v in i.items() if k == 'id']
 
         if not arg:
             print("** class name missing **")
@@ -88,13 +89,18 @@ class HBNBCommand(cmd.Cmd):
                 count += 1
             with open(self.file, 'w') as f:
                 json.dump(data, f, indent=4)
+
     def do_all(self, args):
-        """'all' command Prints all string representation of all instances based or not on the class name."""
+        """'all' command Prints all string representation
+        of all instances based or not on the class name."""
         if not args or args in self.lst_class:
             all_lst = []
             with open(self.file, 'r') as f:
                 data = json.load(f)
-            all_objects = [v(**obj) for v in self.dict_class.values() for obj in data]
+            all_objects = [
+                v(**obj) for v in
+                self.dict_class.values() for obj in data
+                ]
 
             for obj in all_objects:
                 all_lst += [str(obj)]
@@ -110,13 +116,9 @@ class HBNBCommand(cmd.Cmd):
         try:
             with open(self.file, 'r') as f:
                 data = json.load(f)
-            all_id = [v for i in data for k,v in i.items() if k == 'id']
-
-
+            all_id = [v for i in data for k, v in i.items() if k == 'id']
 
             args = arg.split(" ")
-
-
             if not arg:
                 print("** class name missing **")
             elif args[0] not in self.lst_class:
@@ -131,9 +133,16 @@ class HBNBCommand(cmd.Cmd):
             elif len(args) < 4:
                 print("** value missing **")
             elif len(args) > 4:
-                print("Usage: update <class name> <id> <attribute name> '<attribute value>'")
+                print(
+                    "Usage: update <class name>" +
+                    " <id> <attribute name> '<attribute value>'"
+                    )
+
             elif args[0] in self.lst_class and args[1] in all_id:
-                my_object = [BaseModel(**i) for i in data for k in i.keys() if i[k] == args[1]][0]
+                my_object = [
+                    BaseModel(**i) for i in data for k
+                    in i.keys() if i[k] == args[1]
+                    ][0]
                 my_value = args[3].strip('""')
                 setattr(my_object, args[2], my_value)
                 class_id = args[0] + " " + args[1]
@@ -150,7 +159,6 @@ class HBNBCommand(cmd.Cmd):
             print("You need to Create a file before updating one")
         except UnboundLocalError:
             print("You need to Create a file before updating one")
-
 
     def emptyline(self):
         return None

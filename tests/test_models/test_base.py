@@ -6,6 +6,7 @@ from datetime import datetime
 """Unittest for BaseModel()
 """
 
+
 class TestBaseModel(unittest.TestCase):
     def test_attributes(self):
         model = BaseModel()
@@ -15,7 +16,10 @@ class TestBaseModel(unittest.TestCase):
 
     def test_str(self):
         model = BaseModel()
-        self.assertEqual(str(model), "[BaseModel] ({}) {}".format(model.id, model.__dict__))
+        self.assertEqual(
+            str(model),
+            "[BaseModel] ({}) {}".format(model.id, model.__dict__)
+            )
 
     def test_save(self):
         model = BaseModel()
@@ -30,4 +34,3 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(my_dict["id"], model.id)
         self.assertEqual(my_dict["created_at"], model.created_at.isoformat())
         self.assertEqual(my_dict["updated_at"], model.updated_at.isoformat())
-
