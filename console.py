@@ -6,12 +6,12 @@ import os
 
 
 class HBNBCommand(cmd.Cmd):
-    intro = "\n".join(
-        [
-            "Type 'EOF' or 'quit' to exit the program",
-            "Type 'Help' or '?' to see all available commands",
-            "------------------------------------------------\n"
-        ])
+    # intro = "\n".join(
+    #     [
+    #         "Type 'EOF' or 'quit' to exit the program",
+    #         "Type 'Help' or '?' to see all available commands",
+    #         "------------------------------------------------\n"
+    #     ])
     prompt = '(hbnb) '
     lst_class = ["BaseModel"]
     dict_class = {"BaseModel": BaseModel}
