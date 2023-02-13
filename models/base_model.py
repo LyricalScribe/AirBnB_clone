@@ -45,3 +45,4 @@ class BaseModel:
             else:
                 my_dict[k] = v
         return my_dict
+
