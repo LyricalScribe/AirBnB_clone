@@ -3,6 +3,11 @@
 import cmd
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 from models import storage
 import shlex
 
@@ -11,10 +16,19 @@ class HBNBCommand(cmd.Cmd):
     """CLI Processor"""
 
     prompt = '(hbnb) '
-    lst_class = ["BaseModel", "User"]
-    dict_class = {"BaseModel": BaseModel,
-                "User": User
-                    }
+    lst_class = [
+        "BaseModel", "User", "State", "City",
+        "Place", "Amenity", "Review"
+        ]
+    dict_class = {
+                "BaseModel": BaseModel,
+                "User": User,
+                "State": State,
+                "City": City,
+                "Amenity": Amenity,
+                "Place": Place,
+                "Review": Review
+                }
     file = "models_dict.json"
 
     def do_create(self, args):
@@ -75,7 +89,6 @@ class HBNBCommand(cmd.Cmd):
                     return
             print("** no instance found **")
 
-
     def do_all(self, args):
         """'all' command Prints all string representation
         of all instances based or not on the class name."""
@@ -114,7 +127,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             all_objs = storage.all()
-            for key, objc in all_objs.items():
+            for objc in all_objs.values():
                 ob_name = objc.__class__.__name__
                 ob_id = objc.id
                 if ob_name == args[0] and ob_id == args[1].strip('"'):
