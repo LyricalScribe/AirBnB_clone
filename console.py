@@ -21,6 +21,7 @@ class HBNBCommand(cmd.Cmd):
         "BaseModel", "User", "State", "City",
         "Place", "Amenity", "Review"
         ]
+    lst_cmd = ["show", "count", "all", "destroy", "update"]
 
     dict_class = {
                 "BaseModel": BaseModel,
@@ -143,6 +144,17 @@ class HBNBCommand(cmd.Cmd):
                     return
             print("** no instance found **")
 
+    def do_count(self, arg):
+        data = storage.all()
+        num = 0
+        if not arg:
+            print(len(data))
+            return
+        for v in data.values():
+            if v.__class__.__name__ == arg:
+                num += 1
+        print(num)
+
     def emptyline(self):
         return None
 
@@ -159,9 +171,14 @@ class HBNBCommand(cmd.Cmd):
 
         if '.' in line and '(' in line and ')' in line:
             lst_arg = line.split('.')
-            d_cmd = lst_arg[1][:-2]
-            if len(lst_arg) == 2 and lst_arg[0] in self.lst_class:
-                line = d_cmd + ' ' + lst_arg[0]
+            d_cls = lst_arg
+            d_cmd = d_cls[1].split('(')
+            d_arg = d_cmd[1].split(')')
+            line = d_cmd[0] + ' ' + d_cls[0] + " " + d_arg[0]
+
+            if d_cls[0] in self.lst_class and d_cmd[0] in self.lst_cmd:
+                line = d_cmd[0] + ' ' + d_cls[0] + " " + d_arg[0]
+            print(line)
         return line
 
 
