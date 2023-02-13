@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Our Console Module handles all CLI function"""
 
 import cmd
 from models.base_model import BaseModel
