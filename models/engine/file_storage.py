@@ -29,15 +29,14 @@ class FileStorage:
             dictionary[key] = value.to_dict()
 
         with open(self.__file_path, 'w') as f:
-            json.dump(dictionary, f)
+            json.dump(dictionary, f, indent=4)
 
     def reload(self):
         from models.base_model import BaseModel
+        from models.user import User
 
-        dct = {'BaseModel': BaseModel}
-        # , 'User': User, 'Place': Place,
-        #        'City': City, 'Amenity': Amenity, 'State': State,
-        #        'Review': Review}
+        dct = {'BaseModel': BaseModel, 'User': User}
+
 
         if os.path.exists(FileStorage.__file_path) is True:
             with open(FileStorage.__file_path, 'r') as f:
