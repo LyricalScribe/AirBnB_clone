@@ -1,0 +1,14 @@
+{
+    "User.06d9ca3b-dfcd-450d-aed8-4093eba60ff1": {
+        "__class__": "User",
+        "id": "06d9ca3b-dfcd-450d-aed8-4093eba60ff1",
+        "created_at": "2023-02-13T14:28:30.695375",
+        "updated_at": "2023-02-13T14:28:30.695375"
+    },
+    "BaseModel.941d7441-e5fc-4736-b423-efdc6a9bdd7a": {
+        "__class__": "BaseModel",
+        "id": "941d7441-e5fc-4736-b423-efdc6a9bdd7a",
+        "created_at": "2023-02-13T14:28:41.196133",
+        "updated_at": "2023-02-13T14:28:41.196133"
+    }
+}

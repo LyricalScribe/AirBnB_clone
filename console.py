@@ -153,6 +153,14 @@ class HBNBCommand(cmd.Cmd):
         """Quit command to exit the program\n"""
         return True
 
+    def precmd(self, line):
+        if '.' in line:
+            lst_arg = line.split('.')
+            if len(lst_arg) == 2 and lst_arg[1] == "all()":
+                if lst_arg[0] in self.lst_class:
+                    line = 'all ' + lst_arg[0]
+        return line
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
