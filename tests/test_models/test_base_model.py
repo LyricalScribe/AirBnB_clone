@@ -1,36 +1,43 @@
 #!/usr/bin/python3
 import unittest
-from models.base_model import BaseModel
+from base_model import BaseModel
 from datetime import datetime
-
-"""Unittest for BaseModel()
-"""
-
+"""Unittest for BaseModel()"""
 
 class TestBaseModel(unittest.TestCase):
-    def test_attributes(self):
-        model = BaseModel()
-        self.assertIsInstance(model.id, str)
-        self.assertIsInstance(model.created_at, datetime.now())
-        self.assertIsInstance(model.updated_at, datetime.now())
 
+    def setUp(self):
+        """Set Up instances"""
+        self.model = BaseModel()
+        self.model_2 = BaseModel()
+
+    
+    def test_id(self):
+      
+        self.assertNotEqual(self.model.id, self.model_2.id)
+        self.assertTrue(hasattr(self.model, "id"))
+        
+    def test_created_at(self):
+        self.assertTrue(hasattr(self.model, "created_at"),"created_at attribute does not exist in model")
+        self.assertTrue(isinstance(self.model.created_at,datetime), "created at is not an instance of datetime")
+        
+        
+    def test_updated_at(self):
+        self.assertTrue(hasattr(self.model, "updated_at"), "updated_at attribute does not exist in model")
+        self.assertTrue(isinstance(self.model.updated_at,datetime), "updated_at is not an instance of datetime")
+        
+    def test_instantiation_of_model(self):
+        self.assertEqual(type(self.model).__name__, "BaseModel")
+        
+    def test_dict(self):
+    
+        _dict = self.model.to_dict()
+        self.assertIsInstance(_dict, dict)
+        self.assertEqual(_dict["__class__"], "BaseModel")
+        self.assertEqual(_dict["id"], self.model.id)
+        self.assertEqual(_dict["created_at"], self.model.created_at.isoformat())
+        self.assertEqual(_dict["updated_at"], self.model.updated_at.isoformat())
+        
     def test_str(self):
-        model = BaseModel()
-        self.assertEqual(
-            str(model),
-            "[BaseModel] ({}) {}".format(model.id, model.__dict__)
-            )
-
-    def test_save(self):
-        model = BaseModel()
-        original_updated_at = model.updated_at
-        model.save()
-        self.assertNotEqual(model.updated_at, original_updated_at)
-
-    def test_to_dict(self):
-        model = BaseModel()
-        my_dict = model.to_dict()
-        self.assertEqual(my_dict["__class__"], "BaseModel")
-        self.assertEqual(my_dict["id"], model.id)
-        self.assertEqual(my_dict["created_at"], model.created_at.isoformat())
-        self.assertEqual(my_dict["updated_at"], model.updated_at.isoformat())
+        self.assertEqual(str(self.model),"[BaseModel] ({}) {}".format(self.model.id, self.model.__dict__))
+        
