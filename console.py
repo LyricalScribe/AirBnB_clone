@@ -21,6 +21,7 @@ class HBNBCommand(cmd.Cmd):
         "BaseModel", "User", "State", "City",
         "Place", "Amenity", "Review"
         ]
+
     dict_class = {
                 "BaseModel": BaseModel,
                 "User": User,
@@ -154,11 +155,13 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def precmd(self, line):
-        if '.' in line:
+        """Handling extra commands for CLI"""
+
+        if '.' in line and '(' in line and ')' in line:
             lst_arg = line.split('.')
-            if len(lst_arg) == 2 and lst_arg[1] == "all()":
-                if lst_arg[0] in self.lst_class:
-                    line = 'all ' + lst_arg[0]
+            d_cmd = lst_arg[1][:-2]
+            if len(lst_arg) == 2 and lst_arg[0] in self.lst_class:
+                line = d_cmd + ' ' + lst_arg[0]
         return line
 
 
