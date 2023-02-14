@@ -1,21 +1,17 @@
 {
-    "User.06d9ca3b-dfcd-450d-aed8-4093eba60ff1": {
+    "User.be252ecb-6e2f-4888-9310-dc65d6488457": {
         "__class__": "User",
-        "id": "06d9ca3b-dfcd-450d-aed8-4093eba60ff1",
-        "created_at": "2023-02-13T14:28:30.695375",
-        "updated_at": "2023-02-13T14:28:30.695375"
+        "id": "be252ecb-6e2f-4888-9310-dc65d6488457",
+        "created_at": "2023-02-14T11:14:09.264742",
+        "updated_at": "2023-02-14T11:14:09.264742",
+        "first_name": "John",
+        "age": "98"
     },
-    "BaseModel.941d7441-e5fc-4736-b423-efdc6a9bdd7a": {
+    "BaseModel.326f48f8-537f-4380-a4f4-f12b2311ca0f": {
         "__class__": "BaseModel",
-        "id": "941d7441-e5fc-4736-b423-efdc6a9bdd7a",
-        "created_at": "2023-02-13T14:28:41.196133",
-        "updated_at": "2023-02-13T14:28:41.196133"
-    },
-    "User.822d9ff4-a4a4-4923-8ef7-8c9eedcb51aa": {
-        "__class__": "User",
-        "id": "822d9ff4-a4a4-4923-8ef7-8c9eedcb51aa",
-        "created_at": "2023-02-13T16:28:38.684432",
-        "updated_at": "2023-02-13T16:28:38.684432",
-        "{first_name:": "John"
+        "id": "326f48f8-537f-4380-a4f4-f12b2311ca0f",
+        "created_at": "2023-02-14T11:14:17.980765",
+        "updated_at": "2023-02-14T11:14:17.980765",
+        "age": "98"
     }
 }

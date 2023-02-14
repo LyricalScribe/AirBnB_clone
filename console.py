@@ -170,15 +170,27 @@ class HBNBCommand(cmd.Cmd):
         """Handling extra commands for CLI"""
 
         if '.' in line and '(' in line and ')' in line:
-            lst_arg = line.split('.')
-            d_cls = lst_arg
+            d_cls = line.split('.')
             d_cmd = d_cls[1].split('(')
             d_arg = d_cmd[1].split(')')
-            line = d_cmd[0] + ' ' + d_cls[0] + " " + d_arg[0]
+            if '{' and '}' in line:
+                u_arg = d_arg[0].split(',')
+                u_join = u_arg[1] + "," + u_arg[2]
+                u_dct = eval(u_join)
+                num = len(u_dct)
+                for k,v in u_dct.items():
+                    line = d_cmd[0] + ' ' + d_cls[0] + " " + u_arg[0] + ' ' + str(k) + ' ' + str(v)
+                    if num == (num - 1):
+                        return line
+                    line2 = d_cls[0] + " " + u_arg[0] + ' ' + str(k) + ' ' + str(v)
+                    self.do_update(line2)
+                    num -= 1
+                return line
+
 
             if d_cls[0] in self.lst_class and d_cmd[0] in self.lst_cmd:
                 line = d_cmd[0] + ' ' + d_cls[0] + " " + d_arg[0]
-            print(line)
+
         return line
 
 
