@@ -174,19 +174,25 @@ class HBNBCommand(cmd.Cmd):
             d_cmd = d_cls[1].split('(')
             d_arg = d_cmd[1].split(')')
             if '{' and '}' in line:
-                u_arg = d_arg[0].split(',')
-                u_join = u_arg[1] + "," + u_arg[2]
-                u_dct = eval(u_join)
+                u_arg = eval(d_arg[0])
+
+                # u_join = u_arg[1] + "," + u_arg[2]
+                u_dct = u_arg[1]
                 num = len(u_dct)
-                for k,v in u_dct.items():
-                    line = d_cmd[0] + ' ' + d_cls[0] + " " + u_arg[0] + ' ' + str(k) + ' ' + str(v)
-                    if num == (num - 1):
+                for k, v in u_dct.items():
+                    line = (
+                        d_cmd[0] + ' ' + d_cls[0] + " " + u_arg[0]
+                        + ' ' + str(k) + ' ' + str(v)
+                        )
+                    if num == 1:
                         return line
-                    line2 = d_cls[0] + " " + u_arg[0] + ' ' + str(k) + ' ' + str(v)
+                    line2 = (
+                        d_cls[0] + " " + u_arg[0] +
+                        ' ' + str(k) + ' ' + str(v)
+                        )
                     self.do_update(line2)
                     num -= 1
                 return line
-
 
             if d_cls[0] in self.lst_class and d_cmd[0] in self.lst_cmd:
                 line = d_cmd[0] + ' ' + d_cls[0] + " " + d_arg[0]
