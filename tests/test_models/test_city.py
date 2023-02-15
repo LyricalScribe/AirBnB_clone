@@ -18,6 +18,8 @@ class TestCity(unittest.Testcase):
     
     def test_name(self):
         self.assertTrue(hasattr(self.city, "name"),"name attribute does not exist in model")
+        self.name = "Nelspruit"
+        self.assertEqual(self.name, "Nelspruit")
     
     def test_id(self):
         self.assertNotEqual(self.city.id, self.place_2.id)
