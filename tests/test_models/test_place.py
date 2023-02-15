@@ -38,6 +38,8 @@ class TestPlace(unittest.Testcase):
         
     def test_number_bathrooms(self):
         self.assertTrue(hasattr(self.place.number_bathrooms, "number_bathrooms"),"number_rooms does not exist in Place model")
+        self.place.number_bathrooms = "2"
+        self.assertEqual(self.place.number_bathrooms, "2")
         
     def test_max_guest(self):
         self.assertTrue(hasattr(self.place.max_guest, "max_guest"),"max_guest does not exist in Place model")
