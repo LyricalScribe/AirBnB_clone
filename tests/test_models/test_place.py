@@ -30,12 +30,30 @@ class TestPlace(unittest.Testcase):
         self.assertNotEqual(self.place.id, self.place_2.id)
         self.assertTrue(hasattr(self.place, "id"))
      
+    def test_description(self):
+        self.assertTrue(hasattr(self.place.description, "description"),"description does not exist in Place model")
+        
+    def test_number_rooms(self):
+        self.assertTrue(hasattr(self.place.number_rooms, "description"),"number_rooms does not exist in Place model")
+        
+    def test_number_bathrooms(self):
+        self.assertTrue(hasattr(self.place.number_bathrooms, "number_bathrooms"),"number_rooms does not exist in Place model")
+        
+    def test_max_guest(self):
+        self.assertTrue(hasattr(self.place.max_guest, "max_guest"),"max_guest does not exist in Place model")
+    
+    def test_price_by_night(self):
+        self.assertTrue(hasattr(self.place.price_by_night, "price_by_night"),"price_by_night does not exist in Place model")
+    
+    def test_latitude(self):
+        self.assertTrue(hasattr(self.place.latitude, "latitude"),"latitude does not exist in Place model")
+        
     def test_created_at(self):
-        self.assertTrue(hasattr(self.place, "created_at"),"created_at attribute does not exist in model")
+        self.assertTrue(hasattr(self.place, "created_at"),"created_at attribute does not exist in Place model")
         self.assertTrue(isinstance(self.place.created_at,datetime), "Place is not an instance of datetime")
         
     def test_updated_at(self):
-        self.assertTrue(hasattr(self.place, "updated_at"), "updated_at attribute does not exist in model")
+        self.assertTrue(hasattr(self.place, "updated_at"), "updated_at attribute does not exist in Place model")
         self.assertTrue(isinstance(self.place.updated_at,datetime), "updated_at is not an instance of datetime")
       
         
