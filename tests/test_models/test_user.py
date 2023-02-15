@@ -26,6 +26,8 @@ class TestUser(unittest.Testcase):
     
     def test_last_name(self):
         self.assertTrue(hasattr(self.user.last_name, "last_name"),"last_name attribute does not exist in model")
+        self.last_name = "Msika"
+        self.assertEqual(self.last_name, "Msika")
         
     def test_id(self):
         self.assertNotEqual(self.user.id, self.place_2.id)
