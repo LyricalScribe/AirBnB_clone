@@ -18,6 +18,8 @@ class TestState(unittest.Testcase):
     
     def test_name(self):
         self.assertTrue(hasattr(self.state, "name"),"name attribute does not exist in model")
+        self.name = "Mpumalanga"
+        self.assertEqual(self.name, "Mpumalanga")
     
     def test_id(self):
         self.assertNotEqual(self.state.id, self.place_2.id)
