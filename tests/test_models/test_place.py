@@ -50,6 +50,8 @@ class TestPlace(unittest.Testcase):
     
     def test_price_by_night(self):
         self.assertTrue(hasattr(self.place.price_by_night, "price_by_night"),"price_by_night does not exist in Place model")
+        self.place.price_by_night = "$200"
+        self.assertEqual(self.place.price_by_night, "$200")
     
     def test_latitude(self):
         self.assertTrue(hasattr(self.place.latitude, "latitude"),"latitude does not exist in Place model")
