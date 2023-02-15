@@ -34,7 +34,9 @@ class TestPlace(unittest.Testcase):
         self.assertTrue(hasattr(self.place.description, "description"),"description does not exist in Place model")
         
     def test_number_rooms(self):
-        self.assertTrue(hasattr(self.place.number_rooms, "description"),"number_rooms does not exist in Place model")
+        self.assertTrue(hasattr(self.place.number_rooms, "number_rooms"),"number_rooms does not exist in Place model")
+        self.place.number_rooms = "3"
+        self.assertEqual(self.place.number_rooms, "3")
         
     def test_number_bathrooms(self):
         self.assertTrue(hasattr(self.place.number_bathrooms, "number_bathrooms"),"number_rooms does not exist in Place model")
