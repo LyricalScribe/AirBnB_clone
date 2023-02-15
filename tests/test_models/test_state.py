@@ -33,4 +33,5 @@ class TestState(unittest.Testcase):
         self.assertTrue(hasattr(self.state, "updated_at"), "updated_at attribute does not exist in model")
         self.assertTrue(isinstance(self.state.updated_at,datetime), "updated_at is not an instance of datetime")
     
-    
+if __name__ == "__main__":
+    unittest.main()    
