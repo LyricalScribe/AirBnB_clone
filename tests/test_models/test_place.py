@@ -48,8 +48,11 @@ class TestPlace(unittest.Testcase):
     def test_latitude(self):
         self.assertTrue(hasattr(self.place.latitude, "latitude"),"latitude does not exist in Place model")
         
-    def test_longitude (self):
-        self.assertTrue(hasattr(self.place.longitude , "longitude "),"longitude does not exist in Place model")
+    def test_longitude(self):
+        self.assertTrue(hasattr(self.place.longitude, "longitude"),"longitude does not exist in Place model")
+        
+    def test_amenity_ids(self):
+        self.assertTrue(hasattr(self.place.amenity_ids, "amenity_ids"),"amenity_ids does not exist in Place model")
         
     def test_created_at(self):
         self.assertTrue(hasattr(self.place, "created_at"),"created_at attribute does not exist in Place model")
